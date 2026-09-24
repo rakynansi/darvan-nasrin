@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our World</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage" class="page">
+    <div class="login-box">
+        <h1>Our World ♡</h1>
+        <p>Enter your name</p>
+
+        <input
+            type="text"
+            id="nameInput"
+            placeholder="Your name"
+            autocomplete="off"
+        >
+
+        <button onclick="login()">Enter</button>
+    </div>
+</div>
+
+
+<!-- MAIN WEBSITE -->
+<div id="mainPage" class="hidden">
+
+    <!-- SETTINGS -->
+    <div class="settings-wrapper">
+
+        <button class="settings-button" onclick="toggleSettings()">
+            ⚙
+        </button>
+
+        <div id="settingsMenu" class="settings-menu hidden">
+
+            <h3>Settings</h3>
+
+            <div class="setting-section">
+                <strong>Account</strong>
+                <p id="accountName"></p>
+            </div>
+
+            <div class="setting-section">
+                <strong>Language</strong>
+
+                <button onclick="setLanguage('en')">
+                    English
+                </button>
+
+                <button onclick="setLanguage('ar')">
+                    العربية
+                </button>
+            </div>
+
+            <div class="setting-section">
+                <strong>Theme</strong>
+
+                <div class="theme-buttons">
+                    <button onclick="setTheme('pink')">Pink</button>
+                    <button onclick="setTheme('dark')">Dark</button>
+                    <button onclick="setTheme('lavender')">Lavender</button>
+                    <button onclick="setTheme('blue')">Blue</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- HOME -->
+    <main id="homePage">
+
+        <section class="welcome">
+            <h1 id="welcomeText">Welcome ♡</h1>
+            <p>Our little world</p>
+        </section>
+
+
+        <!-- OUR TIME -->
+        <section class="main-card">
+
+            <button class="big-section-button" onclick="openSection('ourTime')">
+                ⏳
+                <span>Our Time</span>
+            </button>
+
+        </section>
+
+
+        <!-- WHO KNOWS ME BETTER -->
+        <section class="main-card">
+
+            <button
+                class="big-section-button"
+                onclick="openSection('quiz')"
+            >
+                💗
+                <span>Who Knows Me Better?</span>
+            </button>
+
+        </section>
+
+
+        <!-- ASK ME FOR PERMISSION -->
+        <section class="main-card">
+
+            <button
+                class="big-section-button"
+                onclick="openPrivateSection()"
+            >
+                🔒
+                <span>Ask Me For Permission</span>
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- OUR TIME -->
+    <section id="ourTime" class="sub-page hidden">
+
+        <button class="back-button" onclick="goHome()">← Back</button>
+
+        <h2>Our Time ♡</h2>
+
+        <div class="options-grid">
+
+            <button onclick="openMedia('songs')">
+                🎵
+                <span>Our Songs</span>
+            </button>
+
+            <button onclick="openMedia('games')">
+                🎮
+                <span>Our Games</span>
+            </button>
+
+            <button onclick="openMedia('apps')">
+                📱
+                <span>Our Apps</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- MEDIA -->
+    <section id="mediaPage" class="sub-page hidden">
+
+        <button class="back-button" onclick="openSection('ourTime')">
+            ← Back
+        </button>
+
+        <h2 id="mediaTitle"></h2>
+
+        <p class="small-info">
+            Add your links in the JavaScript file.
+        </p>
+
+        <div id="mediaList" class="media-list"></div>
+
+    </section>
+
+
+    <!-- QUIZ -->
+    <section id="quiz" class="sub-page hidden">
+
+        <button class="back-button" onclick="goHome()">← Back</button>
+
+        <div id="quizContainer">
+
+            <h2>Who Knows Me Better? 💗</h2>
+
+            <div class="progress">
+                <span id="questionNumber">1</span> / 10
+            </div>
+
+            <h3 id="questionText"></h3>
+
+            <input
+                type="text"
+                id="answerInput"
+                placeholder="Your answer"
+                autocomplete="off"
+            >
+
+            <button onclick="nextQuestion()" class="next-button">
+                Next →
+            </button>
+
+        </div>
+
+        <div id="quizFinished" class="hidden">
+
+            <h2>Finished ♡</h2>
+
+            <p>
+                Your answers have been saved.
+            </p>
+
+        </div>
+
+
+        <div class="create-own">
+
+            <h3>Create Your Own</h3>
+
+            <p>
+                Create your own questions and send the link.
+            </p>
+
+            <button onclick="showCreator()">
+                Create Your Own
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE YOUR OWN -->
+    <section id="creator" class="sub-page hidden">
+
+        <button class="back-button" onclick="openSection('quiz')">
+            ← Back
+        </button>
+
+        <h2>Create Your Own 💌</h2>
+
+        <div id="creatorQuestions"></div>
+
+        <button onclick="addCreatorQuestion()" class="secondary-button">
+            + Add Question
+        </button>
+
+        <button onclick="createQuizLink()" class="next-button">
+            Create Link
+        </button>
+
+        <div id="createdLink" class="created-link hidden">
+
+            <p>Your quiz link:</p>
+
+            <input id="linkOutput" readonly>
+
+            <button onclick="copyQuizLink()">
+                Copy Link
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRIVATE PHOTOS -->
+    <section id="privateSection" class="sub-page hidden">
+
+        <button class="back-button" onclick="goHome()">← Back</button>
+
+        <h2>Ask Me For Permission 🔒</h2>
+
+        <div id="privatePhotos" class="photo-grid">
+
+            <!--
+                ADD YOUR PHOTOS HERE
+
+                Example:
+
+                <img src="assets/photo1.jpg" alt="Our photo">
+                <img src="assets/photo2.jpg" alt="Our photo">
+
+            -->
+
+            <div class="empty-message">
+                Add your photos to the assets folder.
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
